@@ -8,4 +8,4 @@ def index(request):
         'title': 'Departamentos',
         'subtitle': 'Listado de departamentos'
     }
-    return render(request, 'departamentos.html', data, context_instance = RequestContext(request))
+    return render(request, 'departamentos.html', data)
