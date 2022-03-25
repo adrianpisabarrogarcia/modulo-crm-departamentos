@@ -8,4 +8,11 @@ def index(request):
         'title': 'Departamentos',
         'subtitle': 'Listado de departamentos'
     }
-    return render(request, 'index.html', data)
+    return render(request, 'sign-in.html', data)
+
+def register(request):
+    data = {
+        'title': 'Departamentos',
+        'subtitle': 'Listado de departamentos'
+    }
+    return render(request, 'register.html', data)

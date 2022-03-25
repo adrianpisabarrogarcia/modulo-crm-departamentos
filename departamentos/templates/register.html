@@ -1,0 +1,93 @@
+{% extends "layout-sign.html" %}
+{% load static %}
+
+
+{% block content %}
+
+    <div class="m-0 vh-100 row justify-content-center align-items-center">
+        <form class="p-5 col-md-4">
+
+            <h2>Registrar usuario</h2>
+
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+                <input type="text" id="nombre" name="nombre" class="form-control" required/>
+                <label class="form-label" for="nombre">Nombre y Apellido</label>
+            </div>
+
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+                <input type="text" id="user" name="user" class="form-control" required/>
+                <label class="form-label" for="user">Usuario (nickname)</label>
+            </div>
+
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+                <input type="email" id="email" name="email" class="form-control" required/>
+                <label class="form-label" for="email">Email</label>
+            </div>
+
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+                <input type="password" id="password" name="password" class="form-control"/>
+                <label class="form-label" for="password">Contraseña</label>
+            </div>
+
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+                <input type="password" id="password2" name="password2" class="form-control"/>
+                <label class="form-label" for="password2">Repite contraseña</label>
+            </div>
+
+            <!--Departamentos -->
+            <div class="form-outline mb-4">
+                <h3>Elige departamento:</h3>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="rrhh" name="rrhh" id="flexCheckDefault"
+                           checked>
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Departamento de RRHH
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="produccion" value="produccion" id="produccion"
+                           checked>
+                    <label class="form-check-label" for="produccion">
+                        Departamento de Producción
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="prodadministracionuccion"
+                           value="administracion" id="administracion"
+                           checked>
+                    <label class="form-check-label" for="administracion">
+                        Departamento de Administración
+                    </label>
+                </div>
+            </div>
+
+
+            <div class="text-center mt-2 mb-2">
+                <div class="alert alert-info" role="alert">
+                    <b>El modo de registro será solo de lectura</b>, si desea escoger escritura o lectura tendrá que ser un
+                    usuario de recursos humanos quien asigne los permisos.
+                </div>
+            </div>
+
+
+            <!-- Submit button -->
+
+            <div class="text-end">
+                <button type="button" class="btn btn-primary btn-block mb-4">Registrar usuario</button>
+                <p>¿Ya tienes cuenta? <a href="/">Volver atrás</a></p>
+            </div>
+
+
+        </form>
+    </div>
+
+
+
+
+
+{% endblock %}

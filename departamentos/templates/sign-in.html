@@ -1,0 +1,40 @@
+{% extends "layout-sign.html" %}
+{% load static %}
+
+
+{% block content %}
+
+    <div class="m-0 vh-100 row justify-content-center align-items-center">
+        <form class="p-5 col-md-4">
+
+            <!-- Image source on django -->
+            <img class="img-responsive w-100 mb-5" style="" src="{% static '/img/logo-departamentos.png' %}" alt="logo">
+
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+                <input type="email" id="form2Example1" class="form-control"/>
+                <label class="form-label" for="form2Example1">Usuario</label>
+            </div>
+
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+                <input type="password" id="form2Example2" class="form-control"/>
+                <label class="form-label" for="form2Example2">Contraseña</label>
+            </div>
+
+
+            <div class="text-end">
+                <!-- Submit button -->
+                <button type="button" class="btn btn-primary btn-block mb-4">Iniciar sesión&nbsp;<i
+                    class="fa-solid fa-arrow-turn-down-left"></i></button>
+                <!-- Register buttons -->
+                <p>¿No estás registrado? <a href="/register">Regístrate</a></p>
+            </div>
+        </form>
+    </div>
+
+
+
+
+
+{% endblock %}
