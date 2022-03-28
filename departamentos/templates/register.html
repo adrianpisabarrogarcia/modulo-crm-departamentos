@@ -5,7 +5,8 @@
 {% block content %}
 
     <div class="m-0 vh-100 row justify-content-center align-items-center">
-        <form class="p-5 col-md-4">
+        <form class="p-5 col-md-4" method="post" id="form-registrar">
+            {% csrf_token %}
 
             <h2>Registrar usuario</h2>
 
@@ -57,7 +58,7 @@
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="prodadministracionuccion"
+                    <input class="form-check-input" type="checkbox" name="administracion"
                            value="administracion" id="administracion"
                            checked>
                     <label class="form-check-label" for="administracion">
@@ -78,7 +79,7 @@
             <!-- Submit button -->
 
             <div class="text-end">
-                <button type="button" class="btn btn-primary btn-block mb-4">Registrar usuario</button>
+                <buttom id="registrar" class="btn btn-primary btn-block mb-4">Registrar usuario</buttom>
                 <p>¿Ya tienes cuenta? <a href="/">Volver atrás</a></p>
             </div>
 
@@ -88,6 +89,13 @@
 
 
 
-
-
+    <script>
+        $("#registrar").click(function (event) {
+            if ($("#password").val() != $("#password2").val()) {
+                alert("Las contraseñas no coinciden");
+            }else{
+                $("#form-registrar").submit();
+            }
+        });
+    </script>
 {% endblock %}
