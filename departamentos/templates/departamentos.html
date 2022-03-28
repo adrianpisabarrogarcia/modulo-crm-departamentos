@@ -4,7 +4,32 @@
 
 {% block content %}
 
-    <h2>Departamentos</h2>
+    <h2><u>Departamentos</u></h2>
+
+    <ul class="m-5">
+        <li><h3>📲 Departamento de RRHH</h3></li>
+        <ul class="mb-5">
+            <li><a href="/rrhh/lista-usuarios">Mostrar lista de empleados.</a></li>
+            <li><a href="/dar-alta-trabajador">Dar de alta un trabajador.</a></li>
+            <li><a href="/desahibilitar-inicio-sesion">Deshabilitar inicio de sesión a un trabajador.</a></li>
+            <li><a href="/asignar-nomina">Asignar nómina a un empleado.</a></li>
+        </ul>
+        <li><h3>🏭 Departamento de Producción</h3></li>
+        <ul class="mb-5">
+            <li><a href="/alta-proyecto">Dar de alta un proyecto.</a></li>
+            <li><a href="/parte-poner">Poner un parte.</a></li>
+            <li><a href="/partes-ver">Ver partes.</a></li>
+            <li><a href="/parte-delete">Eliminar un parte.</a></li>
+        </ul>
+        <li><h3>🧮 Departamento de Administración</h3></li>
+        <ul class="mb-5">
+            <li><a href="/nomina-calculo">Cálculo de nóminas.</a></li>
+            <li><a href="/nomina-mail">Una vez calculadas, enviar por correo electrónico a los empleados.</a></li>
+            <li><a href="/crear-gasto">Crear un gasto</a></li>
+            <li><a href="/ver-gastos">Ver gastos</a></li>
+        </ul>
+
+    </ul>
 
 {% endblock %}
 

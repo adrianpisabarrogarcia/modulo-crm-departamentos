@@ -15,8 +15,6 @@ def proximo_usuario_id():
     else:
         return usuarios[-1]['id'] + 1
 
-
-
 def registrar_usuario(request):
     #Nuevo usuario
     id = proximo_usuario_id()
@@ -50,15 +48,13 @@ def registrar_usuario(request):
 def iniciar_sesion(request):
     usuarios = leer_usuarios()
     for usuario in usuarios:
-        if usuario.username == request.POST['user'] and usuario.password == hashlib.md5(request.POST['password'].encode('utf8')).hexdigest():
+        if usuario.username == request.POST['user'] and usuario.password == hashlib.md5(request.POST['password'].encode('utf8')).hexdigest() and usuario.habilitado:
             request.session['id_usuario'] = usuario.id
             return True
     return False
 
-
 def leer_usuarios():
     usuariosJSON = leer_archivos("usuarios.json")
-    print(usuariosJSON)
     usuarios = []
     for usuario in usuariosJSON:
         usuarios.append(Usuario.fromJSON(usuario))
