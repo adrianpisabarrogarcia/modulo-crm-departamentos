@@ -7,4 +7,5 @@ from departamentos import views
 urlpatterns = [
     path('', views.index, name='index'),
     path("register/", views.register, name="register"),
+    path("departamentos/", views.departamentos, name="departamentos"),
 ]

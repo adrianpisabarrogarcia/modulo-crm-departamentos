@@ -47,7 +47,13 @@ def registrar_usuario(request):
     #guardarlos
     guardar_usuarios(usuarios)
 
-
+def iniciar_sesion(request):
+    usuarios = leer_usuarios()
+    for usuario in usuarios:
+        if usuario.username == request.POST['user'] and usuario.password == hashlib.md5(request.POST['password'].encode('utf8')).hexdigest():
+            request.session['id_usuario'] = usuario.id
+            return True
+    return False
 
 
 def leer_usuarios():
