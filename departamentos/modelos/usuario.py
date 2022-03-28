@@ -1,25 +1,20 @@
-from nomina import Nomina
+from departamentos.modelos.nomina import Nomina
 
 class Usuario():
     id = ""
-    permisos = []
     nombre = ""
     username = ""
     password = ""
     email = ""
     habilitado = True
-    nomina = Nomina()
 
-
-    def __init__(self, id, permisos, nombre, username, password, email, habilitado, nomina):
+    def __init__(self, id, nombre, username, password, email, habilitado):
         self.id = id
-        self.permisos = permisos
         self.nombre = nombre
         self.username = username
         self.password = password
         self.email = email
-        self.nomina = nomina
-
+        self.habilitado = habilitado
 
     #Getters & Setters
     def getId(self):
@@ -27,12 +22,6 @@ class Usuario():
 
     def setId(self, id):
         self.id = id
-
-    def getPermisos(self):
-        return self.permisos
-
-    def setPermisos(self, permisos):
-        self.permisos = permisos
 
     def getNombre(self):
         return self.nombre
@@ -64,41 +53,23 @@ class Usuario():
     def setHabilitado(self, habilitado):
         self.habilitado = habilitado
 
-    def getNomina(self):
-        return self.nomina
-
-    def setNomina(self, nomina):
-        self.nomina = nomina
-
 
 
     #To json
-
     def toJSON(self):
         return {
             'id': self.id,
-            'permisos': self.permisos,
             'nombre': self.nombre,
             'username': self.username,
             'password': self.password,
             'email': self.email,
             'habilitado': self.habilitado,
-            'nomina': self.nomina.toJson()
         }
 
     #From Json
     def fromJSON(json):
-        usuario = Usuario()
-        usuario.id = json['id']
-        usuario.permisos = json['permisos']
-        usuario.nombre = json['nombre']
-        usuario.username = json['username']
-        usuario.password = json['password']
-        usuario.email = json['email']
-        usuario.habilitado = json['habilitado']
-        usuario.nomina = Nomina.fromJson(json['nomina'])
-        return usuario
+        return Usuario(json['id'], json['nombre'] , json['username'] , json['password'] , json['email'], json['habilitado'])
 
     #To String
     def __str__(self):
-        return "Usuario: " + self.id + " " + self.nombre + " " + self.username + " " + self.password + " " + self.email + " " + self.habilitado + " " + self.nomina.toString()
+        return "Usuario: " + self.id + " " + self.nombre + " " + self.username + " " + self.password + " " + self.email + " " + self.habilitado
