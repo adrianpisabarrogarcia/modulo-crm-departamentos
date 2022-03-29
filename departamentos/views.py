@@ -3,7 +3,7 @@ from django.template import RequestContext
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.utils import timezone
-from departamentos.controllers.c_usuarios import registrar_usuario, iniciar_sesion
+from departamentos.controllers.c_usuarios import registrar_usuario, iniciar_sesion, c_listar_usuarios
 from departamentos.controllers.c_permisos import permisos_departamentos
 
 #para iniciar sesion mediante post y get para el formulario
@@ -36,5 +36,6 @@ def cerrar_sesion(request):
 
 
 def listar_usuarios(request):
-    return render(request, 'rrhh/lista-usuarios.html', {'usuarios': "usuarios"})
+    usuarios = c_listar_usuarios()
+    return render(request, 'rrhh/lista-usuarios.html', {'usuarios': usuarios})
 

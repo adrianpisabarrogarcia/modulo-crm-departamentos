@@ -15,6 +15,9 @@ def proximo_usuario_id():
     else:
         return usuarios[-1]['id'] + 1
 
+def c_listar_usuarios():
+    return leer_usuarios()
+
 def registrar_usuario(request):
     #Nuevo usuario
     id = proximo_usuario_id()

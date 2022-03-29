@@ -16,16 +16,27 @@
                     <th scope="col">Nombre</th>
                     <th scope="col">Username</th>
                     <th scope="col">Email</th>
+                    <th scope="col">Habilitado</th>
+
                 </tr>
                 </thead>
                 <tbody>
                 {% for usuario in usuarios %}
-                    <tr>
-                        <td>{{ usuario.id }}</td>
-                        <td>{{ usuario.nombre }}</td>
-                        <td>{{ usuario.username }}</td>
-                        <td>{{ usuario.email }}</td>
-                    </tr>
+                <tr>
+                    <td>{{ usuario.id }}</td>
+                    <td>{{ usuario.nombre }}</td>
+                    <td>{{ usuario.username }}</td>
+                    <td>{{ usuario.email }}</td>
+                    {% if usuario.habilitado %}
+                        <td>
+                            <span class="badge badge-success">Si</span>
+                        </td>
+                    {% else %}
+                        <td>
+                            <span class="badge badge-danger">No</span>
+                        </td>
+                    {% endif %}
+                </tr>
                 {% endfor %}
                 </tbody>
             </table>
