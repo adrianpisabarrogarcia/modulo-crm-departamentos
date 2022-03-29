@@ -60,7 +60,7 @@ def asignar_nomina(request):
     #return render(request, 'rrhh/asignar-nomina.html', {usuarios_nominas: usuarios_nominas})
     return render(request, 'rrhh/asignar-nomina.html', {"datos" : datos })
 
-#depr producción
+#dept producción
 def ver_partes(request):
     partes = leer_partes()
     return render(request, 'produccion/ver-partes.html', {'partes': partes})
