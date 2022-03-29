@@ -40,7 +40,7 @@ class Parte():
 
 
     #To json
-    def toJson(self):
+    def toJSON(self):
         return {
             "id": self.id,
             "proyecto": self.proyecto.toJson(),
@@ -54,7 +54,7 @@ class Parte():
 
     #From Json
     @staticmethod
-    def fromJson(json):
+    def fromJSON(json):
         return Parte(
             json["id"],
             Proyecto.fromJson(json["proyecto"]),

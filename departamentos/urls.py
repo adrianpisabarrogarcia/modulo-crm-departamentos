@@ -14,4 +14,5 @@ urlpatterns = [
     path("rrhh/habilitar", views.habilitar_usuario, name="habilitar_usuario"),
     path("rrhh/habilitar-deshabilitar", views.habilitar_deshabilitar_usuario, name="habilitar_deshabilitar_usuario"),
     path("rrhh/asignar-nomina", views.asignar_nomina, name="asignar_nomina"),
+    path("produccion/ver-partes", views.ver_partes, name="ver_partes"),
 ]
