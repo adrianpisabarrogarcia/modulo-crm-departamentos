@@ -1,13 +1,19 @@
 class Nomina():
+    id_usuario = ""
     cantidad = ""
     fecha = ""
 
-    def __init__(self, cantidad, fecha):
+    def __init__(self, id_usuario, cantidad, fecha):
+        self.id_usuario = id_usuario
         self.cantidad = cantidad
         self.fecha = fecha
 
+    # Getters & Setters
+    def get_id_usuario(self):
+        return self.id_usuario
 
-    #Getters & Setters
+    def set_id_usuario(self, id_usuario):
+        self.id_usuario = id_usuario
 
     def getCantidad(self):
         return self.cantidad
@@ -21,23 +27,18 @@ class Nomina():
     def setFecha(self, fecha):
         self.fecha = fecha
 
-
-    #To String
+    # To String
     def __str__(self):
-        return " Cantidad: " + self.cantidad + " Fecha: " + self.fecha
+        return "Id usuario: " + self.id_usuario + " Cantidad: " + self.cantidad + " Fecha: " + self.fecha
 
-    #To Json
-    def toJson(self):
+    # To Json
+    def toJSON(self):
         return {
+            'id_usuario': self.id_usuario,
             'cantidad': self.cantidad,
             'fecha': self.fecha
         }
 
-    #From Json
-    def fromJson(json):
-        return Nomina(json["cantidad"], json["fecha"])
-
-
-
-
-
+    # From Json
+    def fromJSON(json):
+        return Nomina(json["id_usuario"], json["cantidad"], json["fecha"])

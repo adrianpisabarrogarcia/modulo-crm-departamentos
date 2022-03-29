@@ -69,5 +69,17 @@ def guardar_usuarios(usuarios):
         usuariosJSON.append(usuario.toJSON())
     guardar_archivo(usuariosJSON,"usuarios.json")
 
+def c_deshabilitar_habilitar_usuario(id, habilitar):
+    usuarios = leer_usuarios()
+    for usuario in usuarios:
+        if str(usuario.id) == str(id):
+            if habilitar:
+                #habilitar usuario
+                usuario.habilitado = True
+            else:
+                #deshabilitar usuario
+                usuario.habilitado = False
+            break
+    guardar_usuarios(usuarios)
 
 
