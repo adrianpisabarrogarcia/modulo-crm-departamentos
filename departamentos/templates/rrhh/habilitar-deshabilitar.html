@@ -29,11 +29,11 @@
                     <td>{{ usuario.email }}</td>
                     {% if usuario.habilitado %}
                         <td>
-                            <span class="badge badge-success">Si</span>
+                            <a href="/rrhh/deshabilitar?id={{ usuario.id }}" class="btn btn-danger"><i class="fa-solid fa-xmark-large"></i>&nbsp;Deshabilitar </a>
                         </td>
                     {% else %}
                         <td>
-                            <span class="badge badge-danger">No</span>
+                            <a href="/rrhh/habilitar?id={{ usuario.id }}" class="btn btn-success"><i class="fa-solid fa-check"></i>&nbsp;Habilitar </a>
                         </td>
                     {% endif %}
                 </tr>
