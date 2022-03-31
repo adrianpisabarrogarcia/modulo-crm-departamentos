@@ -4,16 +4,16 @@ class Parte():
     id_usuario = ""
     proyecto = ""
     observacion = ""
-    duracion = 0
+    duracion = ""
     fecha = ""
 
-    def __init__(self, id, id_usuario, proyecto, observacion, duracion):
+    def __init__(self, id, id_usuario, proyecto, observacion, duracion, fecha):
         self.id = id
         self.id_usuario = id_usuario
         self.proyecto = proyecto
         self.observacion = observacion
         self.duracion = duracion
-        self.fecha = ""
+        self.fecha = fecha
 
 
     #Getters & Setters

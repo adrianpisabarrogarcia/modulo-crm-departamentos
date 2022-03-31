@@ -4,48 +4,37 @@
 
 {% block content %}
 
-    <h2><u>Añadir proyectos</u></h2>
+    <h2><u>Añadir partes</u></h2>
 
 
-    <form method="post">
+    <form method="post" class="p-5">
         {% csrf_token %}
 
-        <div class="mb-3 row">
-            <label for="nombre" class="col-sm-2 col-form-label">Nombre del proyecto:</label>
-            <div class="col-sm-8">
-                <input type="text" name="nombre" class="form-control" id="nombre" required>
-            </div>
-            <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary mb-3">Generar proyecto</button>
-            </div>
-        </div>
-    </form>
-
-
-
-
-    <h2><u>Lista de proyectos</u></h2>
-    {% if proyectos %}
-        <div class="m-5 text-white">
-            <table class="table text-white">
-                <thead>
-                <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Nombre</th>
-                </tr>
-                </thead>
-                <tbody>
+        <div class="mb-3">
+            <label for="proyecto" class="form-label">Seleccionar proyecto: </label>
+            <select class="form-select" name="proyecto" id="proyecto" aria-label="Seleccionar proyecto" required>
                 {% for proyecto in proyectos %}
-                    <tr>
-                        <td>{{ proyecto.id }}</td>
-                        <td>{{ proyecto.nombre }}</td>
-                    </tr>
+                    <option value="{{ proyecto.id }}">{{ proyecto.nombre }}</option>
                 {% endfor %}
-                </tbody>
-            </table>
+            </select>
         </div>
-    {% else %}
-        <p class="text-center">No hay proyectos registrados</p>
-    {% endif %}
+        <div class="mb-3">
+            <label for="observacion" class="form-label">Observaciones:</label>
+            <textarea name="observacion" class="form-control" id="observacion" rows="3"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="duracion" class="form-label">Duración:</label>
+            <input type="time" name="duracion" class="form-control" id="duracion" placeholder="Duración en horas"
+                   required>
+        </div>
+        <div class="mb-5">
+            <label for="fecha" class="form-label">Fecha:</label>
+            <input type="date" name="fecha" class="form-control" id="fecha" required>
+        </div>
+        <div class="mt-3">
+            <button type="submit" class="btn btn-primary w-100">Añadir</button>
+        </div>
+
+    </form>
 
 {% endblock %}

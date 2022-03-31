@@ -20,16 +20,17 @@ def guardar_usuarios(proyectos):
 def buscar_proyecto_nombre_concreto(id_proyecto):
     proyectos = leer_proyectos()
     for proyecto in proyectos:
-        if proyecto.id_proyecto == id_proyecto:
+        if str(proyecto.id) == str(id_proyecto):
             return proyecto.nombre
     return id_proyecto
 
 def proximo_id_proyecto():
     proyectos = leer_proyectos()
+
     if len(proyectos) == 0:
         return 1
     else:
-        return proyectos[-1].id_proyecto + 1
+        return str(int(proyectos[int(len(proyectos)-1)].id) + 1)
 
 def anadir_proyecto(request):
     nombre = request.POST.get("nombre")

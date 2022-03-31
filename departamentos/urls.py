@@ -16,4 +16,6 @@ urlpatterns = [
     path("rrhh/asignar-nomina", views.asignar_nomina, name="asignar_nomina"),
     path("produccion/ver-partes", views.ver_partes, name="ver_partes"),
     path("produccion/alta-proyecto", views.alta_proyecto, name="alta_proyecto"),
+    path("produccion/alta-parte", views.alta_partes, name="alta_partes"),
+    path("produccion/parte-delete", views.parte_delete, name="parte_delete"),
 ]

@@ -6,7 +6,7 @@ from django.utils import timezone
 from departamentos.controllers.c_usuarios import registrar_usuario, iniciar_sesion, c_listar_usuarios, c_deshabilitar_habilitar_usuario
 from departamentos.controllers.c_permisos import permisos_departamentos
 from departamentos.controllers.c_nominas import datos_usuarios_nominas, asignar_nomina_usuario
-from departamentos.controllers.c_partes import c_ver_partes
+from departamentos.controllers.c_partes import c_ver_partes, anadir_partes, eliminar_parte
 from departamentos.controllers.c_proyectos import anadir_proyecto, leer_proyectos
 
 #app basics
@@ -70,3 +70,15 @@ def alta_proyecto(request):
         anadir_proyecto(request)
     proyectos = leer_proyectos()
     return render(request, 'produccion/alta-proyecto.html', {'proyectos': proyectos})
+
+def alta_partes(request):
+    if request.method == 'POST':
+        anadir_partes(request)
+    proyectos = leer_proyectos()
+    return render(request, 'produccion/alta-parte.html', {'proyectos': proyectos})
+
+def parte_delete(request):
+    if request.method == 'POST':
+        eliminar_parte(request)
+    partes = c_ver_partes()
+    return render(request, 'produccion/parte-delete.html', {'partes': partes})
