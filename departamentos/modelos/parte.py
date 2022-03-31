@@ -1,16 +1,19 @@
-from proyecto import Proyecto
 
 class Parte():
     id = ""
-    proyecto = Proyecto()
-    observacion = 0.0
-    duracion = ""
+    id_usuario = ""
+    proyecto = ""
+    observacion = ""
+    duracion = 0
+    fecha = ""
 
-    def __init__(self, id, proyecto, observacion, duracion):
+    def __init__(self, id, id_usuario, proyecto, observacion, duracion):
         self.id = id
+        self.id_usuario = id_usuario
         self.proyecto = proyecto
         self.observacion = observacion
         self.duracion = duracion
+        self.fecha = ""
 
 
     #Getters & Setters
@@ -19,6 +22,12 @@ class Parte():
 
     def setId(self, id):
         self.id = id
+
+    def getIdUsuario(self):
+        return self.id_usuario
+
+    def setIdUsuario(self, id_usuario):
+        self.id_usuario = id_usuario
 
     def getProyecto(self):
         return self.proyecto
@@ -38,27 +47,37 @@ class Parte():
     def setDuracion(self, duracion):
         self.duracion = duracion
 
+    def getFecha(self):
+        return self.fecha
+
+    def setFecha(self, fecha):
+        self.fecha = fecha
+
 
     #To json
     def toJSON(self):
         return {
             "id": self.id,
-            "proyecto": self.proyecto.toJson(),
+            "id_usuario": self.id_usuario,
+            "proyecto": self.proyecto,
             "observacion": self.observacion,
-            "duracion": self.duracion
+            "duracion": self.duracion,
+            "fecha": self.fecha
         }
 
     #To String
     def __str__(self):
-        return "Parte: {}, Proyecto: {}, Observacion: {}, Duracion: {}".format(self.id, self.proyecto, self.observacion, self.duracion)
+        return "Parte: {}, Id usuario: {}, Proyecto: {}, Observacion: {}, Duracion: {}, Fecha: {}".format(self.id, self.id_usuario, self.proyecto, self.observacion, self.duracion, self.fecha)
 
     #From Json
     @staticmethod
     def fromJSON(json):
         return Parte(
             json["id"],
-            Proyecto.fromJson(json["proyecto"]),
+            json["id_usuario"],
+            json["proyecto"],
             json["observacion"],
-            json["duracion"]
+            json["duracion"],
+            json["fecha"]
         )
 

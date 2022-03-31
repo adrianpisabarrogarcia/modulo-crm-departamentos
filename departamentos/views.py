@@ -6,7 +6,7 @@ from django.utils import timezone
 from departamentos.controllers.c_usuarios import registrar_usuario, iniciar_sesion, c_listar_usuarios, c_deshabilitar_habilitar_usuario
 from departamentos.controllers.c_permisos import permisos_departamentos
 from departamentos.controllers.c_nominas import datos_usuarios_nominas, asignar_nomina_usuario
-from departamentos.controllers.c_partes import leer_partes
+from departamentos.controllers.c_partes import c_ver_partes
 
 #app basics
 def index(request):
@@ -62,5 +62,5 @@ def asignar_nomina(request):
 
 #dept producción
 def ver_partes(request):
-    partes = leer_partes()
+    partes = c_ver_partes()
     return render(request, 'produccion/ver-partes.html', {'partes': partes})

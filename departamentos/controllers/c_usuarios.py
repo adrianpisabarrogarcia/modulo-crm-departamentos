@@ -1,9 +1,6 @@
 import hashlib, json
-from datetime import datetime
-from departamentos.modelos.departamento import Departamento
 from departamentos.modelos.permiso import Permiso
 from departamentos.modelos.usuario import Usuario
-from departamentos.modelos.nomina import Nomina
 from departamentos.controllers.c_permisos import leer_permisos, guardar_permisos
 from departamentos.controllers.c_ficheros import leer_archivos, guardar_archivo
 
@@ -81,5 +78,13 @@ def c_deshabilitar_habilitar_usuario(id, habilitar):
                 usuario.habilitado = False
             break
     guardar_usuarios(usuarios)
+
+
+def buscar_usuario_nombre_concreto(id):
+    usuarios = leer_usuarios()
+    for usuario in usuarios:
+        if str(usuario.id) == str(id):
+            return usuario.nombre
+    return id
 
 

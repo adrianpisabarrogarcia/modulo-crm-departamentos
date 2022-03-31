@@ -22,7 +22,7 @@ class Proyecto():
 
 
     #To json
-    def toJson(self):
+    def toJSON(self):
         return {
             "id": self.id,
             "nombre": self.nombre
@@ -34,5 +34,5 @@ class Proyecto():
 
     #From Json
     @staticmethod
-    def fromJson(json):
+    def fromJSON(json):
         return Proyecto(json["id"], json["nombre"])
