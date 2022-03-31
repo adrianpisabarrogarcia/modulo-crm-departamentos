@@ -7,6 +7,7 @@ from departamentos.controllers.c_usuarios import registrar_usuario, iniciar_sesi
 from departamentos.controllers.c_permisos import permisos_departamentos
 from departamentos.controllers.c_nominas import datos_usuarios_nominas, asignar_nomina_usuario
 from departamentos.controllers.c_partes import c_ver_partes
+from departamentos.controllers.c_proyectos import anadir_proyecto, leer_proyectos
 
 #app basics
 def index(request):
@@ -57,10 +58,15 @@ def asignar_nomina(request):
     if request.method == 'POST':
         asignar_nomina_usuario(request)
     datos = datos_usuarios_nominas()
-    #return render(request, 'rrhh/asignar-nomina.html', {usuarios_nominas: usuarios_nominas})
     return render(request, 'rrhh/asignar-nomina.html', {"datos" : datos })
 
 #dept producción
 def ver_partes(request):
     partes = c_ver_partes()
     return render(request, 'produccion/ver-partes.html', {'partes': partes})
+
+def alta_proyecto(request):
+    if request.method == 'POST':
+        anadir_proyecto(request)
+    proyectos = leer_proyectos()
+    return render(request, 'produccion/alta-proyecto.html', {'proyectos': proyectos})

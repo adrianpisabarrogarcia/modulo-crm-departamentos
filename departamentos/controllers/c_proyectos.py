@@ -4,7 +4,7 @@ from departamentos.modelos.proyecto import Proyecto
 
 
 def leer_proyectos():
-    proyectosJSON = leer_archivos("usuarios.json")
+    proyectosJSON = leer_archivos("proyectos.json")
     proyectos = []
     for proyecto in proyectosJSON:
         proyectos.append(Proyecto.fromJSON(proyecto))
@@ -23,3 +23,19 @@ def buscar_proyecto_nombre_concreto(id_proyecto):
         if proyecto.id_proyecto == id_proyecto:
             return proyecto.nombre
     return id_proyecto
+
+def proximo_id_proyecto():
+    proyectos = leer_proyectos()
+    if len(proyectos) == 0:
+        return 1
+    else:
+        return proyectos[-1].id_proyecto + 1
+
+def anadir_proyecto(request):
+    nombre = request.POST.get("nombre")
+    id_proyecto = proximo_id_proyecto()
+
+    proyectos = leer_proyectos()
+    proyecto = Proyecto(id_proyecto, nombre)
+    proyectos.append(proyecto)
+    guardar_usuarios(proyectos)

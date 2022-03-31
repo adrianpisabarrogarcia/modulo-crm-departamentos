@@ -1,0 +1,51 @@
+{% extends "../layout.html" %}
+
+
+
+{% block content %}
+
+    <h2><u>Añadir proyectos</u></h2>
+
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="mb-3 row">
+            <label for="nombre" class="col-sm-2 col-form-label">Nombre del proyecto:</label>
+            <div class="col-sm-8">
+                <input type="text" name="nombre" class="form-control" id="nombre" required>
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary mb-3">Generar proyecto</button>
+            </div>
+        </div>
+    </form>
+
+
+
+
+    <h2><u>Lista de proyectos</u></h2>
+    {% if proyectos %}
+        <div class="m-5 text-white">
+            <table class="table text-white">
+                <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for proyecto in proyectos %}
+                    <tr>
+                        <td>{{ proyecto.id }}</td>
+                        <td>{{ proyecto.nombre }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p class="text-center">No hay proyectos registrados</p>
+    {% endif %}
+
+{% endblock %}
