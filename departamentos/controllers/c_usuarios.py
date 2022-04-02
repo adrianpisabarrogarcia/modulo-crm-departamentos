@@ -1,4 +1,4 @@
-import hashlib, json
+import hashlib
 from departamentos.modelos.permiso import Permiso
 from departamentos.modelos.usuario import Usuario
 from departamentos.controllers.c_permisos import leer_permisos, guardar_permisos
