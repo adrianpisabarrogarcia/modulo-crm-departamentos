@@ -1,0 +1,57 @@
+{% extends "../layout.html" %}
+
+
+
+{% block content %}
+
+    <h2><u>Enviar nóminas a empleados</u></h2>
+    <div class="m-5">
+        <form method="post">
+            {% csrf_token %}
+            <div class="row text-center m-4">
+                <span class="text-center">¿Estás seguro de enviar las nóminas a los empleados?</span>
+            </div>
+            <div class="row width-auto">
+                <button type="submit" class="btn btn-primary mb-3">Enviar nóminas por correo</button>
+            </div>
+        </form>
+    </div>
+
+    {% if datos %}
+        <div class="m-5 text-white">
+            <table class="table text-white">
+                <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Fecha de asignación de nómina</th>
+                    <th scope="col">Meses trabajados</th>
+                    <th scope="col">Nómina base al año</th>
+                    <th scope="col">Nómina total ingresada en la cuenta desde que esta trabajando</th>
+                    <th scope="col">Nómina base al mes que se le va ingresar</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for dato in datos %}
+                    <tr>
+                        <td>{{ dato.id }}</td>
+                        <td>{{ dato.nombre }}</td>
+                        <td>{{ dato.username }}</td>
+                        <td>{{ dato.email }}</td>
+                        <td>{{ dato.fecha }}</td>
+                        <td>{{ dato.meses }}</td>
+                        <td>{{ dato.nomina_base }}€</td>
+                        <td>{{ dato.nomina_total }}€</td>
+                        <td>{{ dato.nomina_este_mes }}€</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p class="text-center">No hay trabajadores</p>
+    {% endif %}
+
+{% endblock %}
