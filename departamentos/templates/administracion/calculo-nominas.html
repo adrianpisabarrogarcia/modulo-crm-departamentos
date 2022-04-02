@@ -15,8 +15,12 @@
                     <th scope="col">Id</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Username</th>
-                    <th scope="col">Fecha nómina</th>
-                    <th scope="col">Asignar nómina</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Fecha de asignación de nómina</th>
+                    <th scope="col">Meses trabajados</th>
+                    <th scope="col">Nómina base al año</th>
+                    <th scope="col">Nómina total ingresada en la cuenta desde que esta trabajando</th>
+                    <th scope="col">Nómina base al mes que se le va ingresar</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -25,36 +29,12 @@
                         <td>{{ dato.id }}</td>
                         <td>{{ dato.nombre }}</td>
                         <td>{{ dato.username }}</td>
-                        {% if dato.fecha %}
-                            <td>{{ dato.fecha }} </td>
-                        {% else %}
-                            <td>No asignada</td>
-                        {% endif %}
-                        <td>
-                            {% if dato.nomina %}
-                                <form method="post">
-                                    {% csrf_token %}
-                                    <div class="input-group" style="width: 30%">
-                                        <input type="number" name="nomina" step="0.01" class="form-control" placeholder="1400,00€"
-                                               aria-label="Recipient's username" aria-describedby="button-addon2" value="{{ dato.nomina }}" required>
-                                        <button class="btn btn-outline-primary" type="submit" id="button-addon2">Asignar
-                                        </button>
-                                        <input type="hidden" name="id" value="{{ dato.id }}">
-                                    </div>
-                                </form>
-                            {% else %}
-                                <form method="post">
-                                    {% csrf_token %}
-                                    <div class="input-group" style="width: 30%">
-                                    <input type="number" name="nomina" step="0.01" class="form-control" placeholder="1400,00€"
-                                           aria-label="Recipient's username" aria-describedby="button-addon2" required>
-                                    <button class="btn btn-outline-primary" type="submit" id="button-addon2">Asignar
-                                    </button>
-                                    <input type="hidden" name="id" value="{{ dato.id }}">
-                                </div>
-                            </form>
-                            {% endif %}
-                        </td>
+                        <td>{{ dato.email }}</td>
+                        <td>{{ dato.fecha }}</td>
+                        <td>{{ dato.meses }}</td>
+                        <td>{{ dato.nomina_base }}€</td>
+                        <td>{{ dato.nomina_total }}€</td>
+                        <td>{{ dato.nomina_este_mes }}€ </td>
                     </tr>
                 {% endfor %}
                 </tbody>

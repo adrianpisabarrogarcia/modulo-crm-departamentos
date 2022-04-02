@@ -18,4 +18,10 @@ urlpatterns = [
     path("produccion/alta-proyecto", views.alta_proyecto, name="alta_proyecto"),
     path("produccion/alta-parte", views.alta_partes, name="alta_partes"),
     path("produccion/parte-delete", views.parte_delete, name="parte_delete"),
+    path("administracion/calculo-nominas", views.calculo_nominas, name="calculo_nominas"),
+    path("administracion/enviar-nominas", views.enviar_nominas, name="enviar_nominas"),
+    path("administracion/crear-gasto", views.crear_gasto, name="crear_gato"),
+    path("administracion/ver-gastos", views.ver_gastos, name="ver_gastos"),
+
+
 ]

@@ -5,7 +5,7 @@ from django.shortcuts import redirect
 from django.utils import timezone
 from departamentos.controllers.c_usuarios import registrar_usuario, iniciar_sesion, c_listar_usuarios, c_deshabilitar_habilitar_usuario
 from departamentos.controllers.c_permisos import permisos_departamentos
-from departamentos.controllers.c_nominas import datos_usuarios_nominas, asignar_nomina_usuario
+from departamentos.controllers.c_nominas import datos_usuarios_nominas, asignar_nomina_usuario, calcular_nominas_hasta_la_fecha
 from departamentos.controllers.c_partes import c_ver_partes, anadir_partes, eliminar_parte
 from departamentos.controllers.c_proyectos import anadir_proyecto, leer_proyectos
 
@@ -82,3 +82,14 @@ def parte_delete(request):
         eliminar_parte(request)
     partes = c_ver_partes()
     return render(request, 'produccion/parte-delete.html', {'partes': partes})
+
+#dept administración
+def calculo_nominas(request):
+    datos = calcular_nominas_hasta_la_fecha()
+    return render(request, 'administracion/calculo-nominas.html', {'datos': datos})
+
+def crear_gasto(request):
+    return render(request, 'administracion/crear-gasto.html')
+
+def ver_gastos(request):
+    return render(request, 'administracion/ver-gastos.html')
