@@ -88,3 +88,43 @@ def buscar_usuario_nombre_concreto(id):
     return id
 
 
+def registrar_usuario_rrhh(request):
+    #Nuevo usuario
+    id = proximo_usuario_id()
+    nombre = request.POST['nombre']
+    username = request.POST['usuario']
+    password = hashlib.md5(request.POST['password'].encode('utf8')).hexdigest()
+    email = request.POST['email']
+    habilitado = True
+
+    #crear el usuario
+    usuario = Usuario(id, nombre, username, password, email, habilitado)
+
+    #GUARDAR USUARIO
+    #leer todos los usuarios
+    usuarios = leer_usuarios()
+    #poner el nuevo usuario en la lista
+    usuarios.append(usuario)
+    #guardarlos
+    guardar_usuarios(usuarios)
+
+
+    #Gestión de permisos
+    permisos = leer_permisos()
+    if "rrhh" in request.POST:
+        if request.POST['rrhh-checkbox'] == "lectura":
+            permisos.append(Permiso(id, False, "1"))
+        else:
+            permisos.append(Permiso(id, True, "1"))
+    if "produccion" in request.POST:
+        if request.POST['produccion-checkbox'] == "lectura":
+            permisos.append(Permiso(id, False, "2"))
+        else:
+            permisos.append(Permiso(id, True, "2"))
+    if "administracion" in request.POST:
+        if request.POST['administracion-checkbox'] == "lectura":
+            permisos.append(Permiso(id, False, "3"))
+        else:
+            permisos.append(Permiso(id, True, "3"))
+    guardar_permisos(permisos)
+

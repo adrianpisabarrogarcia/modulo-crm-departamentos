@@ -1,0 +1,97 @@
+{% extends "../layout.html" %}
+
+
+
+{% block content %}
+
+    <h2><u>Dar de alta un usuario</u></h2>
+
+
+    <form method="post" class="p-5">
+        {% csrf_token %}
+
+        <div class="mb-2">
+            <label for="nombre" class="form-label">Nombre y Apellido:</label>
+            <input type="text" name="nombre" class="form-control" id="nombre" required>
+        </div>
+        <div class="mb-2">
+            <label for="usuario" class="form-label">Usuario (nickname):</label>
+            <input type="text" name="usuario" class="form-control" id="usuario" required>
+        </div>
+        <div class="mb-2">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" name="email" class="form-control" id="email" required>
+        </div>
+        <div class="mb-5">
+            <label for="password" class="form-label">Contraseña:</label>
+            <input type="password" name="password" class="form-control" id="password" required>
+        </div>
+        <!--Departamentos -->
+        <div class="form-outline mb-4">
+            <h3>Elige departamento:</h3>
+            <div class="form-check  mb-4">
+                <input class="form-check-input" type="checkbox" value="rrhh" name="rrhh" id="flexCheckDefault"
+                       checked>
+                <label class="form-check-label" for="flexCheckDefault">
+                    Departamento de RRHH
+                </label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="rrhh-checkbox" value="lectura" id="rrhh-checkbox-1">
+                    <label class="form-check-label" for="rrhh-checkbox-1">
+                        Lectura
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="rrhh-checkbox" value="escritura" id="rrhh-checkbox-2" checked>
+                    <label class="form-check-label" for="rrhh-checkbox-2">
+                        Lectura y Escritura
+                    </label>
+                </div>
+            </div>
+            <div class="form-check  mb-4">
+                <input class="form-check-input" type="checkbox" name="produccion" value="produccion" id="produccion"
+                       checked>
+                <label class="form-check-label" for="produccion">
+                    Departamento de Producción
+                </label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="produccion-checkbox" value="lectura" id="rrhh-checkbox-1">
+                    <label class="form-check-label" for="rrhh-checkbox-1">
+                        Lectura
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="produccion-checkbox" value="escritura" id="rrhh-checkbox-2" checked>
+                    <label class="form-check-label" for="rrhh-checkbox-2">
+                        Lectura y Escritura
+                    </label>
+                </div>
+            </div>
+            <div class="form-check  mb-4">
+                <input class="form-check-input" type="checkbox" name="administracion"
+                       value="administracion" id="administracion"
+                       checked>
+                <label class="form-check-label" for="administracion">
+                    Departamento de Administración
+                </label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="administracion-checkbox" value="lectura" id="rrhh-checkbox-1">
+                    <label class="form-check-label" for="rrhh-checkbox-1">
+                        Lectura
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="administracion-checkbox" value="escritura" id="rrhh-checkbox-2" checked>
+                    <label class="form-check-label" for="rrhh-checkbox-2">
+                        Lectura y Escritura
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="mt-3">
+            <button type="submit" class="btn btn-primary w-100">Añadir</button>
+        </div>
+
+    </form>
+
+{% endblock %}

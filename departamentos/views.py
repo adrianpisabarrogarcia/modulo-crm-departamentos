@@ -3,7 +3,7 @@ from django.template import RequestContext
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.utils import timezone
-from departamentos.controllers.c_usuarios import registrar_usuario, iniciar_sesion, c_listar_usuarios, c_deshabilitar_habilitar_usuario
+from departamentos.controllers.c_usuarios import registrar_usuario, iniciar_sesion, c_listar_usuarios, c_deshabilitar_habilitar_usuario, registrar_usuario_rrhh
 from departamentos.controllers.c_permisos import permisos_departamentos
 from departamentos.controllers.c_nominas import datos_usuarios_nominas, asignar_nomina_usuario, calcular_nominas_hasta_la_fecha, enviar_nominas_email
 from departamentos.controllers.c_partes import c_ver_partes, anadir_partes, eliminar_parte
@@ -60,6 +60,12 @@ def asignar_nomina(request):
         asignar_nomina_usuario(request)
     datos = datos_usuarios_nominas()
     return render(request, 'rrhh/asignar-nomina.html', {"datos" : datos })
+
+def alta_usuario(request):
+    if request.method == 'POST':
+        registrar_usuario_rrhh(request)
+    return render(request, 'rrhh/alta-usuario.html')
+
 
 #dept producción
 def ver_partes(request):

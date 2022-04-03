@@ -14,5 +14,13 @@
     "password": "202cb962ac59075b964b07152d234b70",
     "email": "apisabarro@teknei.com",
     "habilitado": true
+  },
+  {
+    "id": 3,
+    "nombre": "Adri",
+    "username": "apisabarro2",
+    "password": "202cb962ac59075b964b07152d234b70",
+    "email": "adrian.pisabarro@ikasle.egibide.org",
+    "habilitado": true
   }
 ]
