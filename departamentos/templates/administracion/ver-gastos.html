@@ -1,0 +1,51 @@
+{% extends "../layout.html" %}
+
+
+
+{% block content %}
+
+    <h2><u>Lista de gastos</u></h2>
+
+
+    {% if gastos %}
+        <div class="m-5 text-white">
+            <table class="table text-white">
+                <thead>
+                <tr>
+                    <th scope="col">Id Gasto</th>
+                    <th scope="col">Nombre de gasto</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Borrar</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for gasto in gastos %}
+                    <tr>
+                        <td>{{ gasto.id }}</td>
+                        <td>{{ gasto.nombre }}</td>
+                        <td>{{ gasto.precio }}€</td>
+                        <td>{{ gasto.cantidad }} unid.</td>
+                        <td>{{ gasto.fecha }}</td>
+                        <td>
+                            <form method="post">
+                                {% csrf_token %}
+
+                                <input type="hidden" name="id" value="{{ gasto.id }}">
+                                <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </form>
+
+
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p class="text-center">No hay gastos registrados</p>
+    {% endif %}
+
+{% endblock %}

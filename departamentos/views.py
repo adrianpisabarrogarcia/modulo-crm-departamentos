@@ -8,6 +8,7 @@ from departamentos.controllers.c_permisos import permisos_departamentos
 from departamentos.controllers.c_nominas import datos_usuarios_nominas, asignar_nomina_usuario, calcular_nominas_hasta_la_fecha, enviar_nominas_email
 from departamentos.controllers.c_partes import c_ver_partes, anadir_partes, eliminar_parte
 from departamentos.controllers.c_proyectos import anadir_proyecto, leer_proyectos
+from departamentos.controllers.c_gastos import anadir_gasto, leer_gastos, eliminar_gasto
 
 #app basics
 def index(request):
@@ -96,7 +97,12 @@ def enviar_nominas(request):
     return render(request, 'administracion/enviar-nominas.html', {'datos': datos})
 
 def crear_gasto(request):
-    return render(request, 'administracion/crear-gasto.html')
+        if request.method == 'POST':
+            anadir_gasto(request)
+        return render(request, 'administracion/crear-gasto.html')
 
 def ver_gastos(request):
-    return render(request, 'administracion/ver-gastos.html')
+    if request.method == 'POST':
+        eliminar_gasto(request)
+    gastos = leer_gastos()
+    return render(request, 'administracion/ver-gastos.html', {'gastos': gastos})

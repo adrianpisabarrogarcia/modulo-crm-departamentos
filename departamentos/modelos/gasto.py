@@ -48,7 +48,7 @@ class Gasto():
 
 
     #To json
-    def toJson(self):
+    def toJSON(self):
         return {
             "id": self.id,
             "nombre": self.nombre,
@@ -63,5 +63,5 @@ class Gasto():
 
     #From Json
     @staticmethod
-    def fromJson(json):
+    def fromJSON(json):
         return Gasto(json["id"], json["nombre"], json["precio"], json["cantidad"], json["fecha"])
