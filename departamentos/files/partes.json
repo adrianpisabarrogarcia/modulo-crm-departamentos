@@ -1,9 +1,1 @@
-[
-  {
-    "id": 1,
-    "nombre": "asdasd",
-    "precio": "123",
-    "cantidad": "123",
-    "fecha": "2022-02-28"
-  }
-]
+[{"id": 1, "id_usuario": "4", "proyecto": "1", "observacion": "Hecho", "duracion": "01:00", "fecha": "2022-03-15"}]
