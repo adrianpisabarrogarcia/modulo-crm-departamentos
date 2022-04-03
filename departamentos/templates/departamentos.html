@@ -6,29 +6,56 @@
 
     <h2><u>Departamentos</u></h2>
 
-    <ul class="m-5">
-        <li><h3>📲 Departamento de RRHH</h3></li>
-        <ul class="mb-5">
-            <li><a href="/rrhh/lista-usuarios">Mostrar lista de empleados.</a></li>
-            <li><a href="/rrhh/alta-usuario">Dar de alta un trabajador.</a></li>
-            <li><a href="/rrhh/habilitar-deshabilitar">Deshabilitar inicio de sesión a un trabajador.</a></li>
-            <li><a href="/rrhh/asignar-nomina">Asignar nómina a un empleado.</a></li>
+    {% if permisos %}
+
+        <ul class="m-5">
+            {% for permiso in permisos %}
+                {% if permiso.departamento == '1' %}
+                    <li><h3>📲 Departamento de RRHH</h3></li>
+                    <ul class="mb-5">
+                        <li><a href="/rrhh/lista-usuarios">Mostrar lista de empleados.</a></li>
+                        {% if permiso.escritura %}
+                            <li><a href="/rrhh/alta-usuario">Dar de alta un trabajador.</a></li>
+                            <li><a href="/rrhh/habilitar-deshabilitar">Deshabilitar inicio de sesión a un
+                                trabajador.</a>
+                            </li>
+                            <li><a href="/rrhh/asignar-nomina">Asignar nómina a un empleado.</a></li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
+                {% if permiso.departamento == '2' %}
+                    <li><h3>🏭 Departamento de Producción</h3></li>
+                    <ul class="mb-5">
+                        {% if permiso.escritura %}
+                            <li><a href="/produccion/alta-proyecto">Dar de alta un proyecto.</a></li>
+                            <li><a href="/produccion/alta-parte">Poner un parte.</a></li>
+                            <li><a href="/produccion/parte-delete">Eliminar un parte.</a></li>
+                        {% endif %}
+                        <li><a href="/produccion/ver-partes">Ver partes.</a></li>
+
+                    </ul>
+                {% endif %}
+                {% if permiso.departamento == '3' %}
+                    <li><h3>🧮 Departamento de Administración</h3></li>
+                    <ul class="mb-5">
+                        {% if permiso.escritura %}
+                            <li><a href="/administracion/calculo-nominas">Cálculo de nóminas.</a></li>
+                        {% endif %}
+                        <li><a href="/administracion/enviar-nominas">Una vez calculadas, enviar por correo electrónico a
+                            los
+                            empleados.</a></li>
+                        {% if permiso.escritura %}
+                            <li><a href="/administracion/crear-gasto">Crear un gasto</a></li>
+                        {% endif %}
+                        <li><a href="/administracion/ver-gastos">Ver gastos</a></li>
+                    </ul>
+                {% endif %}
+            {% endfor %}
+
         </ul>
-        <li><h3>🏭 Departamento de Producción</h3></li>
-        <ul class="mb-5">
-            <li><a href="/produccion/alta-proyecto">Dar de alta un proyecto.</a></li>
-            <li><a href="/produccion/alta-parte">Poner un parte.</a></li>
-            <li><a href="/produccion/ver-partes">Ver partes.</a></li>
-            <li><a href="/produccion/parte-delete">Eliminar un parte.</a></li>
-        </ul>
-        <li><h3>🧮 Departamento de Administración</h3></li>
-        <ul class="mb-5">
-            <li><a href="/administracion/calculo-nominas">Cálculo de nóminas.</a></li>
-            <li><a href="/administracion/enviar-nominas">Una vez calculadas, enviar por correo electrónico a los empleados.</a></li>
-            <li><a href="/administracion/crear-gasto">Crear un gasto</a></li>
-            <li><a href="/administracion/ver-gastos">Ver gastos</a></li>
-        </ul>
-    </ul>
+    {% else %}
+        <p class="text-center">No tienes permisos para ver esta página.</p>
+    {% endif %}
 
 {% endblock %}
 

@@ -19,10 +19,10 @@ def permisos_departamentos(id_usuario):
     permisos = leer_permisos()
     permisos_departamentos = []
     for permiso in permisos:
-        if permiso.id_usuario == id_usuario:
+        if str(permiso.id_usuario) == str(id_usuario):
             # guardo el id del departamento para saber que departamento tiene permiso ese usuario y si tiene permiso para escribir o ver
             permisos_departamentos.append({
-                "id_departamento": permiso.id_departamento,
+                "departamento": str(permiso.id_departamento),
                 "escritura": permiso.escritura,
             })
     return permisos_departamentos
