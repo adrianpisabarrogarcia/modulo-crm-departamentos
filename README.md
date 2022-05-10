@@ -10,6 +10,6 @@ El documento con el Manual de Usuario, se encuentra en este enlace: [https://lab
 
 ## Comandos para Migrations con SQL Lite
 1. Escribir las classes en el archivo `models.py`
-2. Ejecutar el comando `python manage.py makemigrations`
-3. Ejecutar el comando `python manage.py migrate`
-4. Ejecutar el comando `python manage.py runserver`
+2. Ejecutar el comando `python3 manage.py makemigrations`
+3. Ejecutar el comando `python3 manage.py migrate`
+4. Ejecutar el comando `python3 manage.py runserver`
