@@ -13,3 +13,12 @@ El documento con el Manual de Usuario, se encuentra en este enlace: [https://lab
 2. Ejecutar el comando `python3 manage.py makemigrations`
 3. Ejecutar el comando `python3 manage.py migrate`
 4. Ejecutar el comando `python3 manage.py runserver`
+
+## Pasar a SQL   
+ - [] Eliminar ficheros
+ - [] Gastos
+ - [] Nominas
+ - [] Partes
+ - [] Permisos
+ - [] Proyectos
+ - [] Usuarios
