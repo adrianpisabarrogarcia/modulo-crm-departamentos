@@ -1,22 +1,7 @@
-from departamentos.controllers.c_ficheros import leer_archivos, guardar_archivo
-from departamentos.modelos.permiso import Permiso
-
-
-def leer_permisos():
-    permisosJSON = leer_archivos("permisos.json")
-    permisos = []
-    for permiso in permisosJSON:
-        permisos.append(Permiso.fromJSON(permiso))
-    return permisos
-
-def guardar_permisos(permisos):
-    permisosJSON = []
-    for permiso in permisos:
-        permisosJSON.append(permiso.toJSON())
-    guardar_archivo(permisosJSON, "permisos.json")
+from departamentos.models import Permiso, Usuario
 
 def permisos_departamentos(id_usuario):
-    permisos = leer_permisos()
+    permisos = Permiso.objects.filter(user=Usuario.objects.get(id=int(id_usuario)))
     permisos_departamentos = []
     for permiso in permisos:
         if str(permiso.id_usuario) == str(id_usuario):
