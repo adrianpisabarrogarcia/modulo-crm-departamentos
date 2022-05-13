@@ -19,7 +19,7 @@ El documento con el Manual de Usuario, se encuentra en este enlace: [https://lab
  - [] Gastos
  - [] Nominas
  - [] Partes
- - [] Permisos
+ - [✅] Permisos
  - [] Proyectos
  - [✅] Usuarios
 ### SELECT
