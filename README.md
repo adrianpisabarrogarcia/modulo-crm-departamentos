@@ -21,4 +21,30 @@ El documento con el Manual de Usuario, se encuentra en este enlace: [https://lab
  - [] Partes
  - [] Permisos
  - [] Proyectos
- - [] Usuarios
+ - [✅] Usuarios
+### SELECT
+```python
+usuarios = Usuario.objects.filter(username=request.POST['user'])
+```
+### INSERT
+```python
+usuario = Usuario(nombre=nombre, username=username, password=password, email=email, habilitado=habilitado)
+usuario.save()
+```
+### UPDATE
+```python
+usuario = Usuario.objects.get(id=int(id))
+if habilitar:
+    # habilitar usuario
+    usuario.habilitado = True
+else:
+    # deshabilitar usuario
+    usuario.habilitado = False
+usuario.save()
+```
+
+### UPDATE
+```python
+usuario = Usuario.objects.get(id=int(id))
+usuario.delete()
+```
