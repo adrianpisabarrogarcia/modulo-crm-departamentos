@@ -2,9 +2,11 @@ import datetime
 from django.core.mail import send_mail
 from django.conf import settings
 
-from departamentos.controllers.c_usuarios import leer_usuarios
 from departamentos.controllers.c_ficheros import guardar_archivo, leer_archivos
 from departamentos.modelos.nomina import Nomina
+
+from departamentos.models import Usuario
+
 
 
 def leer_nominas():
@@ -24,7 +26,7 @@ def guardar_nominas(nominas):
 
 # obtener las nominas de un trabajador, si las tiene
 def datos_usuarios_nominas():
-    usuarios = leer_usuarios()
+    usuarios = Usuario.objects.all()
     nominas = leer_nominas()
 
     datos_usuarios_nominas = []
@@ -56,7 +58,7 @@ def datos_usuarios_nominas():
 # borrar la nomina anterior si la tiene y crear una nueva
 def asignar_nomina_usuario(request):
     nominas = leer_nominas()
-    usuarios = leer_usuarios()
+    usuarios = Usuario.objects.all()
     id_usuario = request.POST.get("id")
     cantidad = request.POST.get("nomina")
     # fecha de hoy
@@ -81,7 +83,7 @@ def calcular_nominas_hasta_la_fecha():
         meses = (fecha_hoy.year - fecha_nomina.year) * 12 + fecha_hoy.month - fecha_nomina.month
         nomina.cantidad = float(nomina.cantidad) * meses
 
-    usuarios = leer_usuarios()
+    usuarios = Usuario.objects.all()
     datos_usuarios_nominas = []
     for usuario in usuarios:
         for nomina in nominas:

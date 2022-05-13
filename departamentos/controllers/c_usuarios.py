@@ -1,11 +1,9 @@
 import hashlib
-from departamentos.controllers.c_permisos import leer_permisos, guardar_permisos
 from departamentos.models import Usuario, Permiso, Departamento
 
 
 def c_listar_usuarios():
     return Usuario.objects.all()
-
 
 def registrar_usuario(request):
     # Nuevo usuario
@@ -16,20 +14,20 @@ def registrar_usuario(request):
     habilitado = True
 
     # Crear usuario
-    usuario = Usuario(nombre, username, password, email, habilitado)
+    usuario = Usuario(nombre=nombre, username=username, password=password, email=email, habilitado=habilitado)
     usuario.save()
 
     # Gestión de permisos del usuario
     if "rrhh" in request.POST:
-        Permiso(usuario, False, Departamento.objects.get(id=1)).save()
+        Permiso(usuario=usuario, escritura=False, departamento=Departamento.objects.get(id=1)).save()
     if "produccion" in request.POST:
-        Permiso(usuario, False, Departamento.objects.get(id=2)).save()
+        Permiso(usuario=usuario, escritura=False, departamento=Departamento.objects.get(id=2)).save()
     if "administracion" in request.POST:
-        Permiso(usuario, False, Departamento.objects.get(id=3)).save()
+        Permiso(usuario=usuario, escritura=False, departamento=Departamento.objects.get(id=3)).save()
 
 
 def iniciar_sesion(request):
-    usuarios = Usuario.objects.get(username=request.POST['user']).posts.all()
+    usuarios = Usuario.objects.filter(username=request.POST['user'])
 
     for usuario in usuarios:
         if usuario.username == request.POST['user'] and usuario.password == hashlib.md5(
@@ -61,23 +59,22 @@ def registrar_usuario_rrhh(request):
     habilitado = True
 
     # crear el usuario
-    usuario = Usuario(nombre, username, password, email, habilitado)
+    usuario = Usuario(nombre=nombre, username=username, password=password, email=email, habilitado=habilitado)
     usuario.save()
 
     # Gestión de permisos
     if "rrhh" in request.POST:
         if request.POST['rrhh-checkbox'] == "lectura":
-            Permiso(usuario, False, Departamento.objects.get(id=1))
+            Permiso(usuario=usuario, escritura=False, departamento=Departamento.objects.get(id=1))
         else:
-            Permiso(usuario, True, Departamento.objects.get(id=1))
+            Permiso(usuario=usuario, escritura=True, epartamento=Departamento.objects.get(id=1))
     if "produccion" in request.POST:
         if request.POST['produccion-checkbox'] == "lectura":
-            Permiso(usuario, False, Departamento.objects.get(id=2))
+            Permiso(usuario=usuario, escritura=False, epartamento=Departamento.objects.get(id=2))
         else:
-            Permiso(usuario, True, Departamento.objects.get(id=2))
+            Permiso(usuario=usuario, escritura=True, epartamento=Departamento.objects.get(id=2))
     if "administracion" in request.POST:
         if request.POST['administracion-checkbox'] == "lectura":
-            Permiso(usuario, False, Departamento.objects.get(id=3))
+            Permiso(usuario=usuario, escritura=False, epartamento=Departamento.objects.get(id=3))
         else:
-            Permiso(usuario, True, Departamento.objects.get(id=3))
-    guardar_permisos(permisos)
+            Permiso(usuario=usuario, escritura=True, epartamento=Departamento.objects.get(id=3))
