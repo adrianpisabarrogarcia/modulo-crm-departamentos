@@ -43,7 +43,7 @@ else:
 usuario.save()
 ```
 
-### UPDATE
+### DELETE
 ```python
 usuario = Usuario.objects.get(id=int(id))
 usuario.delete()

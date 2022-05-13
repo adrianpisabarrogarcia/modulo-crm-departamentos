@@ -1,40 +1,19 @@
 import datetime
 from django.core.mail import send_mail
 from django.conf import settings
-
-from departamentos.controllers.c_ficheros import guardar_archivo, leer_archivos
-from departamentos.modelos.nomina import Nomina
-
-from departamentos.models import Usuario
-
-
-
-def leer_nominas():
-    nominasJSON = leer_archivos("nominas.json")
-    nominas = []
-    for nomina in nominasJSON:
-        nominas.append(Nomina.fromJSON(nomina))
-    return nominas
-
-
-def guardar_nominas(nominas):
-    nominasJSON = []
-    for nomina in nominas:
-        nominasJSON.append(nomina.toJSON())
-    guardar_archivo(nominasJSON, "nominas.json")
+from departamentos.models import Usuario, Nomina
 
 
 # obtener las nominas de un trabajador, si las tiene
 def datos_usuarios_nominas():
     usuarios = Usuario.objects.all()
-    nominas = leer_nominas()
-
     datos_usuarios_nominas = []
 
     for usuario in usuarios:
         tiene_nomina = False
+        nominas = Nomina.objects.filter(usuario=usuario)
         for nomina in nominas:
-            if str(usuario.id) == str(nomina.id_usuario):
+            if str(usuario.id) == str(nomina.usuario.id):
                 usuario_nomina = {
                     "id": usuario.id,
                     "nombre": usuario.nombre,
@@ -57,24 +36,22 @@ def datos_usuarios_nominas():
 
 # borrar la nomina anterior si la tiene y crear una nueva
 def asignar_nomina_usuario(request):
-    nominas = leer_nominas()
-    usuarios = Usuario.objects.all()
     id_usuario = request.POST.get("id")
     cantidad = request.POST.get("nomina")
     # fecha de hoy
     now = datetime.datetime.now()
     fecha = now.strftime("%Y-%m-%d")
-    for nomina in nominas:
-        if str(nomina.id_usuario) == str(id_usuario):
-            nominas.remove(nomina)
-    nomina = Nomina(str(id_usuario), str(cantidad), str(fecha))
-    nominas.append(nomina)
-    guardar_nominas(nominas)
+
+    # borrar la nomina anterior si la tiene
+    usuario = Usuario.objects.get(id=int(id_usuario))
+    Nomina.objects.get(usuario=usuario).delete()
+    # crear una nueva nomina
+    Nomina(usuario=usuario, cantidad=float(cantidad), fecha=fecha).save()
 
 
 # obtener las nominas de un trabajador, si las tiene y las suma en función de la fecha
 def calcular_nominas_hasta_la_fecha():
-    nominas = leer_nominas()
+    nominas = Nomina.objects.all()
 
     for nomina in nominas:
         fecha_nomina = datetime.datetime.strptime(nomina.fecha, "%Y-%m-%d")
@@ -87,7 +64,7 @@ def calcular_nominas_hasta_la_fecha():
     datos_usuarios_nominas = []
     for usuario in usuarios:
         for nomina in nominas:
-            if str(usuario.id) == str(nomina.id_usuario):
+            if str(usuario.id) == str(nomina.usuario.id):
                 nomina_base = nomina.cantidad
                 fecha_nomina = datetime.datetime.strptime(nomina.fecha, "%Y-%m-%d")
                 fecha_hoy = datetime.datetime.now()
