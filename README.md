@@ -15,8 +15,8 @@ El documento con el Manual de Usuario, se encuentra en este enlace: [https://lab
 4. Ejecutar el comando `python3 manage.py runserver`
 
 ## Pasar a SQL   
- - [] Eliminar ficheros
- - [] Gastos
+ - [✅] Eliminar ficheros
+ - [✅] Gastos
  - [✅] Nominas
  - [✅] Partes
  - [✅] Permisos
