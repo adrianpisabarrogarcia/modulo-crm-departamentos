@@ -20,7 +20,7 @@ El documento con el Manual de Usuario, se encuentra en este enlace: [https://lab
  - [] Nominas
  - [] Partes
  - [✅] Permisos
- - [] Proyectos
+ - [✅] Proyectos
  - [✅] Usuarios
 ### SELECT
 ```python
