@@ -1,41 +1,13 @@
+import csv
 from django.http import HttpResponse
+from departamentos.models import Parte, Usuario, Proyecto;
 
-from departamentos.controllers.c_ficheros import leer_archivos, guardar_archivo
-from departamentos.controllers.c_usuarios import buscar_usuario_nombre_concreto;
-from departamentos.controllers.c_proyectos import buscar_proyecto_nombre_concreto;
-
-from departamentos.modelos.parte import Parte
-
-
-def leer_partes():
-    partesJSON = leer_archivos("partes.json")
-    partes = []
-    for parte in partesJSON:
-        partes.append(Parte.fromJSON(parte))
-    return partes
-
-def guardar_partes(partes):
-    partesJSON = []
-    for parte in partes:
-        partesJSON.append(parte.toJSON())
-    guardar_archivo(partesJSON, "partes.json")
 
 def c_ver_partes():
-    partes = leer_partes()
-    for parte in partes:
-        parte.id_usuario = str(buscar_usuario_nombre_concreto(parte.id_usuario))
-        parte.proyecto = str(buscar_proyecto_nombre_concreto(parte.proyecto))
+    partes = Parte.objects.all()
     return partes
 
-def proximo_id_parte():
-    partes = leer_partes()
-    if len(partes) == 0:
-        return 1
-    else:
-        return partes[-1].id + 1
-
 def anadir_partes(request):
-    id = proximo_id_parte()
     #cojo el id del usuario de la sesión
     id_usuario = str(request.session.get('id_usuario'))
     proyecto = str(request.POST.get('proyecto'))
@@ -43,36 +15,30 @@ def anadir_partes(request):
     duracion = str(request.POST.get('duracion'))
     fecha = str(request.POST.get('fecha'))
 
-    parte = Parte(id, id_usuario, proyecto, observacion, duracion, fecha)
-    partes = leer_partes()
-    partes.append(parte)
-    guardar_partes(partes)
+    parte = Parte(
+        usuario=Usuario.objects.get(id=int(id_usuario)),
+        proyecto=Proyecto.objects.get(id=int(proyecto)),
+        observacion=observacion,
+        duracion=duracion,
+        fecha=fecha
+    ).save()
 
 def export_csv_partes():
-    partes = leer_partes()
-    for parte in partes:
-        parte.id_usuario = str(buscar_usuario_nombre_concreto(parte.id_usuario))
-        parte.proyecto = str(buscar_proyecto_nombre_concreto(parte.proyecto))
+    partes = Parte.objects.all()
 
     #genero el csv
     with open('partes.csv', 'w', newline='') as csvfile:
-        fieldnames = ['id', 'id_usuario', 'proyecto', 'observacion', 'duracion', 'fecha']
+        fieldnames = ['id', 'id_usuario', 'nombre_usuario', 'id_proyecto', 'nombre_proyecto', 'observacion', 'duracion', 'fecha']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         for parte in partes:
-            writer.writerow({'id': parte.id, 'id_usuario': parte.id_usuario, 'proyecto': parte.proyecto, 'observacion': parte.observacion, 'duracion': parte.duracion, 'fecha': parte.fecha})
+            writer.writerow({'id': str(parte.id), 'id_usuario': str(parte.usuario.id), 'nombre_usuario': parte.usuario.nombre, 'id_proyecto': str(parte.proyecto.id), 'nombre_proyecto': parte.proyecto.nombre, 'observacion': parte.observacion, 'duracion': str(parte.duracion), 'fecha': str(parte.fecha)})
 
         #return a response
         response = HttpResponse(content_type='text/csv')
         response['Content-Disposition'] = 'attachment; filename="partes.csv"'
         return response
 
-
 def eliminar_parte(request):
     id = str(request.POST.get('id'))
-    partes = leer_partes()
-    for parte in partes:
-        if str(parte.id) == str(id):
-            partes.remove(parte)
-            break
-    guardar_partes(partes)
+    Parte.objects.filter(id=int(id)).delete()

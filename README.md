@@ -18,7 +18,7 @@ El documento con el Manual de Usuario, se encuentra en este enlace: [https://lab
  - [] Eliminar ficheros
  - [] Gastos
  - [] Nominas
- - [] Partes
+ - [✅] Partes
  - [✅] Permisos
  - [✅] Proyectos
  - [✅] Usuarios
