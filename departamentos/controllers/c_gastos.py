@@ -1,5 +1,6 @@
 from departamentos.models import Gasto
 
+
 def anadir_gasto(request):
     nombre = request.POST["nombre"]
     precio = request.POST["precio"]
