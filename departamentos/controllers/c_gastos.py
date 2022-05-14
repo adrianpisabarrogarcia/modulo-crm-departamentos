@@ -1,5 +1,8 @@
 from departamentos.models import Gasto
 
+def leer_gastos():
+    gastos = Gasto.objects.all()
+    return gastos
 
 def anadir_gasto(request):
     nombre = request.POST["nombre"]
