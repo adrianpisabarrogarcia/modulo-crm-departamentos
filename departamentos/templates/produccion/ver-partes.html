@@ -24,8 +24,8 @@
                 {% for parte in partes %}
                     <tr>
                         <td>{{ parte.id }}</td>
-                        <td>{{ parte.id_usuario }}</td>
-                        <td>{{ parte.proyecto }}</td>
+                        <td>{{ parte.usuario.nombre }}</td>
+                        <td>{{ parte.proyecto.nombre }}</td>
                         <td>{{ parte.observacion }}</td>
                         <td>{{ parte.duracion }}</td>
                         <td>{{ parte.fecha }}</td>
