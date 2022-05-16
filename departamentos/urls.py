@@ -8,6 +8,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     path("register/", views.register, name="register"),
     path("departamentos/", views.departamentos, name="departamentos"),
+    path("estadisticas/", views.estadisticas, name="estadisticas"),
     path("sign-out/", views.cerrar_sesion, name="cerrar_sesion"),
     path("rrhh/lista-usuarios/", views.listar_usuarios, name="listar_usuarios"),
     path("rrhh/alta-usuario/", views.alta_usuario, name="alta_usuario"),

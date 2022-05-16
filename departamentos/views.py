@@ -11,6 +11,7 @@ from departamentos.controllers.c_nominas import datos_usuarios_nominas, asignar_
 from departamentos.controllers.c_partes import c_ver_partes, anadir_partes, eliminar_parte
 from departamentos.controllers.c_proyectos import anadir_proyecto, leer_proyectos
 from departamentos.controllers.c_gastos import anadir_gasto, leer_gastos, eliminar_gasto
+from departamentos.controllers.c_estadisticas import generar_graficos
 
 
 # app basics
@@ -40,6 +41,11 @@ def departamentos(request):
 def cerrar_sesion(request):
     request.session.flush()
     return redirect('/')
+
+
+def estadisticas(request):
+    estadisticas = generar_graficos()
+    return render(request, 'estadisticas.html', {'estadisticas': estadisticas})
 
 
 # dept rrhh
