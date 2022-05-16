@@ -56,37 +56,28 @@ def asignar_nomina_usuario(request):
 def calcular_nominas_hasta_la_fecha():
     nominas = Nomina.objects.all()
 
+    datos_usuarios_nominas = []
     for nomina in nominas:
+        nomina_base = nomina.cantidad
         fecha_nomina = nomina.fecha
         fecha_hoy = datetime.datetime.now()
         # meses entre las dos fechas
         meses = (fecha_hoy.year - fecha_nomina.year) * 12 + fecha_hoy.month - fecha_nomina.month
-        nomina.cantidad = float(nomina.cantidad) * meses
+        nomina_mes = nomina_base / 12
+        nomina_total = float(nomina_mes * meses)
+        usuario_nomina = {
+            "id": nomina.usuario.id,
+            "nombre": nomina.usuario.nombre,
+            "username": nomina.usuario.username,
+            "email": nomina.usuario.email,
+            "fecha": nomina.fecha,
+            "meses": meses,
+            "nomina_base": nomina_base,
+            "nomina_total": nomina_total,
+            "nomina_este_mes": nomina_mes,
+        }
+        datos_usuarios_nominas.append(usuario_nomina)
 
-    usuarios = Usuario.objects.all()
-    datos_usuarios_nominas = []
-    for usuario in usuarios:
-        for nomina in nominas:
-            if str(usuario.id) == str(nomina.usuario.id):
-                nomina_base = nomina.cantidad
-                fecha_nomina = nomina.fecha
-                fecha_hoy = datetime.datetime.now()
-                # meses entre las dos fechas
-                meses = (fecha_hoy.year - fecha_nomina.year) * 12 + fecha_hoy.month - fecha_nomina.month
-                nomina_mes = nomina_base / 12
-                nomina_total = float(nomina_mes * meses)
-                usuario_nomina = {
-                    "id": usuario.id,
-                    "nombre": usuario.nombre,
-                    "username": usuario.username,
-                    "email": usuario.email,
-                    "fecha": nomina.fecha,
-                    "meses": meses,
-                    "nomina_base": nomina.cantidad,
-                    "nomina_total": nomina_total,
-                    "nomina_este_mes": nomina_mes,
-                }
-                datos_usuarios_nominas.append(usuario_nomina)
     return datos_usuarios_nominas
 
 
@@ -106,11 +97,12 @@ def enviar_nominas_email():
         email_message += "Tu nomina este mes es de " + str(nomina_este_mes) + "€.\n"
         email_message += "\nMuchas gracias y esperemos que disfrutes del sueldo.\n"
 
-        meses = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre","noviembre", "diciembre"]
+        meses = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre",
+                 "noviembre", "diciembre"]
         mes_actual = meses[datetime.datetime.now().month - 1]
         # send mail
         send_mail(
-            'Cálculo de nomina de '+mes_actual+ ' de ' + str(datetime.datetime.now().year),
+            'Cálculo de nomina de ' + mes_actual + ' de ' + str(datetime.datetime.now().year),
             email_message,
             settings.EMAIL_HOST_USER,
             [email],
