@@ -44,7 +44,10 @@ def asignar_nomina_usuario(request):
 
     # borrar la nomina anterior si la tiene
     usuario = Usuario.objects.get(id=int(id_usuario))
-    Nomina.objects.get(usuario=usuario).delete()
+    nominas = Nomina.objects.filter(usuario=usuario)
+    for nomina in nominas:
+        nomina.delete()
+
     # crear una nueva nomina
     Nomina(usuario=usuario, cantidad=float(cantidad), fecha=fecha).save()
 
