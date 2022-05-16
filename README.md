@@ -14,14 +14,6 @@ El documento con el Manual de Usuario, se encuentra en este enlace: [https://lab
 3. Ejecutar el comando `python3 manage.py migrate`
 4. Ejecutar el comando `python3 manage.py runserver`
 
-## Pasar a SQL   
- - [✅] Eliminar ficheros
- - [✅] Gastos
- - [✅] Nominas
- - [✅] Partes
- - [✅] Permisos
- - [✅] Proyectos
- - [✅] Usuarios
 ### SELECT
 ```python
 usuarios = Usuario.objects.filter(username=request.POST['user'])
@@ -48,3 +40,13 @@ usuario.save()
 usuario = Usuario.objects.get(id=int(id))
 usuario.delete()
 ```
+
+## Tareas que faltan por hacer
+- [] Documento pdf que expliques todo el funcionamiento.
+- [] Describe con detalle la organización de la base de datos, las tablas utilizadas, las consultas
+realizadas. En caso de utilizar algún archivo, justifica su necesidad y los casos en que se utilizan.
+- [] Un usuario por cada departamento.
+- Departamento Comercial
+	- [] Crear objetivos empresariales
+	- [] Valores de la empresa
+	- [] Eventos
