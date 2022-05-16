@@ -29,8 +29,8 @@
                     <th scope="col">Fecha de asignación de nómina</th>
                     <th scope="col">Meses trabajados</th>
                     <th scope="col">Nómina base al año</th>
-                    <th scope="col">Nómina total ingresada en la cuenta desde que esta trabajando</th>
-                    <th scope="col">Nómina base al mes que se le va ingresar</th>
+                    <th scope="col">Nómina base este mes</th>
+                    <th scope="col">Nómina total ingresada en la cuenta</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -43,8 +43,8 @@
                         <td>{{ dato.fecha }}</td>
                         <td>{{ dato.meses }}</td>
                         <td>{{ dato.nomina_base }}€</td>
-                        <td>{{ dato.nomina_total }}€</td>
                         <td>{{ dato.nomina_este_mes }}€</td>
+                        <td>{{ dato.nomina_total }}€</td>
                     </tr>
                 {% endfor %}
                 </tbody>
