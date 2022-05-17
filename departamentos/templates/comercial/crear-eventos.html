@@ -7,35 +7,72 @@
     <h2><u>Crear eventos</u></h2>
 
 
-    {% if partes %}
+    <form method="post" class="p-5">
+        {% csrf_token %}
+        <div class="mb-2">
+            <label for="nombre" class="form-label">Nombre del evento:</label>
+            <input type="text" name="nombre" placeholder="" class="form-control" id="nombre" required>
+        </div>
+        <div class="mb-3">
+            <label for="fecha" class="form-label">Fecha:</label>
+            <input type="date" name="fecha" class="form-control" id="fecha" required>
+        </div>
+        <div class="mb-3">
+            <label for="hora" class="form-label">Hora:</label>
+            <input type="time" name="hora" class="form-control" id="hora" required>
+        </div>
+        <div class="mb-3">
+            <label for="lugar" class="form-label">Lugar:</label>
+            <input type="text" name="lugar" placeholder="" class="form-control" id="lugar" required>
+        </div>
+        <div class="mb-3">
+            <label for="descripcion" class="form-label">Descripción:</label>
+            <textarea name="descripcion" class="form-control" id="descripcion" required></textarea>
+        </div>
+        <div class="mt-5">
+            <button type="submit" class="btn btn-primary w-100">Añadir</button>
+        </div>
+    </form>
+
+
+    {% if eventos %}
         <div class="m-5 text-white">
             <table class="table text-white">
                 <thead>
                 <tr>
-                    <th scope="col">Id Parte</th>
-                    <th scope="col">Usuario</th>
-                    <th scope="col">Proyecto</th>
-                    <th scope="col">Observaciones</th>
-                    <th scope="col">Duración</th>
+                    <th scope="col">Id Evento</th>
+                    <th scope="col">Nombre</th>
                     <th scope="col">Fecha</th>
+                    <th scope="col">Hora</th>
+                    <th scope="col">Lugar</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Borrar</th>
                 </tr>
                 </thead>
                 <tbody>
-                {% for parte in partes %}
+                {% for evento in eventos %}
                     <tr>
-                        <td>{{ parte.id }}</td>
-                        <td>{{ parte.usuario.nombre }}</td>
-                        <td>{{ parte.proyecto.nombre }}</td>
-                        <td>{{ parte.observacion }}</td>
-                        <td>{{ parte.duracion }}</td>
-                        <td>{{ parte.fecha }}</td>
+                        <td>{{ evento.id }}</td>
+                        <td>{{ evento.nombre }}</td>
+                        <td>{{ evento.fecha }}</td>
+                        <td>{{ evento.hora }}</td>
+                        <td>{{ evento.lugar }}</td>
+                        <td>{{ evento.descripcion }}</td>
+                        <td>
+                            <form method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="id" value="{{ evento.id }}">
+                                <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </form>
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
         </div>
     {% else %}
-        <p class="text-center">No hay partes registrados</p>
+        <p class="text-center">No hay eventos registrados.</p>
     {% endif %}
 
 {% endblock %}

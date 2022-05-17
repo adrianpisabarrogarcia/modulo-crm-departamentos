@@ -14,6 +14,8 @@ from departamentos.controllers.c_gastos import anadir_gasto, leer_gastos, elimin
 from departamentos.controllers.c_estadisticas import generar_graficos
 from departamentos.controllers.c_objetivos import leer_objetivos, anadir_objetivo, eliminar_objetivo
 from departamentos.controllers.c_valores import leer_valores, anadir_valor, eliminar_valor
+from departamentos.controllers.c_eventos import leer_eventos, anadir_evento, eliminar_evento
+
 
 # app basics
 def index(request):
@@ -158,9 +160,16 @@ def valores(request):
 
 
 def crear_eventos(request):
-    return render(request, 'comercial/crear-eventos.html')
+    if request.method == 'POST':
+        if 'nombre' in request.POST:
+            anadir_evento(request)
+        else:
+            eliminar_evento(request)
+    eventos = leer_eventos()
+    return render(request, 'comercial/crear-eventos.html', {'eventos': eventos})
 
 
 def ver_eventos(request):
-    return render(request, 'comercial/ver-eventos.html')
+    eventos = leer_eventos()
+    return render(request, 'comercial/ver-eventos.html', {'eventos': eventos})
 
