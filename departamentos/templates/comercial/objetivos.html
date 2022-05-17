@@ -1,0 +1,41 @@
+{% extends "../layout.html" %}
+
+
+
+{% block content %}
+
+    <h2><u>Objetivos empresariales</u></h2>
+
+
+    {% if partes %}
+        <div class="m-5 text-white">
+            <table class="table text-white">
+                <thead>
+                <tr>
+                    <th scope="col">Id Parte</th>
+                    <th scope="col">Usuario</th>
+                    <th scope="col">Proyecto</th>
+                    <th scope="col">Observaciones</th>
+                    <th scope="col">Duración</th>
+                    <th scope="col">Fecha</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for parte in partes %}
+                    <tr>
+                        <td>{{ parte.id }}</td>
+                        <td>{{ parte.usuario.nombre }}</td>
+                        <td>{{ parte.proyecto.nombre }}</td>
+                        <td>{{ parte.observacion }}</td>
+                        <td>{{ parte.duracion }}</td>
+                        <td>{{ parte.fecha }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p class="text-center">No hay partes registrados</p>
+    {% endif %}
+
+{% endblock %}

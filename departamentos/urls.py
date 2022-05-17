@@ -24,6 +24,10 @@ urlpatterns = [
     path("administracion/enviar-nominas", views.enviar_nominas, name="enviar_nominas"),
     path("administracion/crear-gasto", views.crear_gasto, name="crear_gato"),
     path("administracion/ver-gastos", views.ver_gastos, name="ver_gastos"),
+    path("comercial/objetivos", views.objetivos, name="objetivos"),
+    path("comercial/valores", views.valores, name="valores"),
+    path("comercial/crear-eventos", views.crear_eventos, name="crear_eventos"),
+    path("comercial/ver-eventos", views.ver_eventos, name="ver_eventos"),
 
 
 ]

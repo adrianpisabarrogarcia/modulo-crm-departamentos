@@ -132,7 +132,22 @@ def crear_gasto(request):
 
 
 def ver_gastos(request):
-    if request.method == 'POST':
-        eliminar_gasto(request)
-    gastos = leer_gastos()
-    return render(request, 'administracion/ver-gastos.html', {'gastos': gastos})
+    return render(request, 'administracion/ver-gastos.html')
+
+
+# dept comercial
+def objetivos(request):
+    return render(request, 'comercial/objetivos.html')
+
+
+def valores(request):
+    return render(request, 'comercial/valores.html')
+
+
+def crear_eventos(request):
+    return render(request, 'comercial/crear-eventos.html')
+
+
+def ver_eventos(request):
+    return render(request, 'comercial/ver-eventos.html')
+
