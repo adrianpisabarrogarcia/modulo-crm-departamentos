@@ -1,0 +1,84 @@
+{% extends "../layout.html" %}
+
+
+
+{% block content %}
+
+    <h2><u>Objetivos empresariales</u></h2>
+
+
+    <form method="post" class="p-5">
+        {% csrf_token %}
+        <div class="mb-2">
+            <label for="nombre" class="form-label">Nombre del objetivo:</label>
+            <input type="text" name="nombre" placeholder="" class="form-control" id="nombre" required>
+        </div>
+        <div class="mb-3">
+            <label for="departamento" class="form-label">Seleccionar departamento: </label>
+            <select class="form-select" name="departamento" id="departamento" aria-label="Seleccionar departamento"
+                    required>
+                <option value="1" selected>Departamento de RRHH</option>
+                <option value="2">Departamento de Producción</option>
+                <option value="3">Departamento de Administración</option>
+                <option value="4">Departamento Comercial</option>
+            </select>
+        </div>
+        <label for="descripcion" class="form-label">Descripción: </label>
+        <div class="form-floating mb-3">
+            <textarea name="descripcion" class="form-control" placeholder="" id="descripcion"
+                      style="height: 100px" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="fecha-inicio" class="form-label">Fecha Inicio:</label>
+            <input type="date" name="fecha-inicio" class="form-control" id="fecha-inicio" required>
+        </div>
+        <div class="mb-3">
+            <label for="fecha-fin" class="form-label">Fecha Fin:</label>
+            <input type="date" name="fecha-fin" class="form-control" id="fecha-fin" required>
+        </div>
+        <div class="mt-5">
+            <button type="submit" class="btn btn-primary w-100">Añadir</button>
+        </div>
+    </form>
+
+
+    {% if objetivos %}
+        <div class="m-5 text-white">
+            <table class="table text-white">
+                <thead>
+                <tr>
+                    <th scope="col">Id Objetivo</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Departamento</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Fecha de Inicio</th>
+                    <th scope="col">Fecha de Fin</th>
+                    <th scope="col">Borrar</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for objetivo in objetivos %}
+                    <tr>
+                        <td>{{ objetivo.id }}</td>
+                        <td>{{ objetivo.nombre }}</td>
+                        <td>{{ objetivo.departamento.nombre }}</td>
+                        <td>{{ objetivo.descripcion }}</td>
+                        <td>{{ objetivo.fechainicio }}</td>
+                        <td>{{ objetivo.fechafin }}</td>
+                        <td>
+                            <form method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="id" value="{{ objetivo.id }}">
+                                <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p class="text-center">No hay objetivos registrados.</p>
+    {% endif %}
+
+{% endblock %}

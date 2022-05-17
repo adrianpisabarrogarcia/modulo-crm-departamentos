@@ -1,0 +1,61 @@
+{% extends "../layout.html" %}
+
+
+
+{% block content %}
+
+    <h2><u>Valores de la empresa</u></h2>
+
+
+    <form method="post" class="p-5">
+        {% csrf_token %}
+        <div class="mb-2">
+            <label for="nombre" class="form-label">Nombre del valor:</label>
+            <input type="text" name="nombre" placeholder="" class="form-control" id="nombre" required>
+        </div>
+        <label for="observacion" class="form-label">Obervaciones: </label>
+        <div class="form-floating mb-3">
+            <textarea name="observacion" class="form-control" placeholder="" id="observacion"
+                      style="height: 100px" required></textarea>
+        </div>
+        <div class="mt-5">
+            <button type="submit" class="btn btn-primary w-100">Añadir</button>
+        </div>
+    </form>
+
+
+    {% if valores %}
+        <div class="m-5 text-white">
+            <table class="table text-white">
+                <thead>
+                <tr>
+                    <th scope="col">Id Valor</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Borrar</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for valor in valores %}
+                    <tr>
+                        <td>{{ valor.id }}</td>
+                        <td>{{ valor.nombre }}</td>
+                        <td>{{ valor.observacion }}</td>
+                        <td>
+                            <form method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="id" value="{{ valor.id }}">
+                                <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p class="text-center">No hay valores registrados.</p>
+    {% endif %}
+
+{% endblock %}

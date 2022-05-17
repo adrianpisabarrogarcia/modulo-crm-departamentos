@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+
+
+{% block content %}
+    {% load static %}
+
+    <h2><u>Estadísticas</u></h2>
+
+    {% if estadisticas %}
+        <div class="m-5 text-center">
+            <h3>Ranking de sueldos</h3>
+            <img src="{% static 'img/' %}{{ estadisticas.sueldos }}" alt="Ranking de sueldos"/>
+            <h3 class="mt-3">Nº de partes por cada proyecto</h3>
+            <img src="{% static 'img/' %}{{ estadisticas.partes }}" alt="Ranking de sueldos"/>
+        </div>
+
+    {% else %}
+        <p class="text-center">No existen datos para generar estadísticas.</p>
+    {% endif %}
+
+{% endblock %}
+
+

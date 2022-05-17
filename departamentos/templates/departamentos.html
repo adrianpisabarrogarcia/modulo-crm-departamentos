@@ -50,6 +50,18 @@
                         <li><a href="/administracion/ver-gastos">Ver gastos</a></li>
                     </ul>
                 {% endif %}
+                {% if permiso.departamento == '4' %}
+                    <li><h3>🤑 Departamento Comercial</h3></li>
+                    <ul class="mb-5">
+                        {% if permiso.escritura %}
+                            <li><a href="/comercial/objetivos">Crear objetivos empresariales</a></li>
+                            <li><a href="/comercial/valores">Crear valores de la empresa</a></li>
+                            <li><a href="/comercial/crear-eventos">Crear eventos</a></li>
+                        {% endif %}
+                            <li><a href="/comercial/ver-eventos">Ver eventos disponibles</a></li>
+
+                    </ul>
+                {% endif %}
             {% endfor %}
 
         </ul>
