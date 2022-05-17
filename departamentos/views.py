@@ -138,6 +138,11 @@ def ver_gastos(request):
 
 # dept comercial
 def objetivos(request):
+    if request.method == 'POST':
+        if 'nombre' in request.POST:
+            anadir_objetivo(request)
+        else:
+            eliminar_objetivo(request)
     objetivos = leer_objetivos()
     return render(request, 'comercial/objetivos.html', {'objetivos': objetivos})
 
