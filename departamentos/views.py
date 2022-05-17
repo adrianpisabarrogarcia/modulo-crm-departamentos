@@ -13,7 +13,7 @@ from departamentos.controllers.c_proyectos import anadir_proyecto, leer_proyecto
 from departamentos.controllers.c_gastos import anadir_gasto, leer_gastos, eliminar_gasto
 from departamentos.controllers.c_estadisticas import generar_graficos
 from departamentos.controllers.c_objetivos import leer_objetivos, anadir_objetivo, eliminar_objetivo
-
+from departamentos.controllers.c_valores import leer_valores, anadir_valor, eliminar_valor
 
 # app basics
 def index(request):
@@ -148,7 +148,13 @@ def objetivos(request):
 
 
 def valores(request):
-    return render(request, 'comercial/valores.html')
+    if request.method == 'POST':
+        if 'nombre' in request.POST:
+            anadir_valor(request)
+        else:
+            eliminar_valor(request)
+    valores = leer_valores()
+    return render(request, 'comercial/valores.html', {'valores': valores})
 
 
 def crear_eventos(request):

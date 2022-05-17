@@ -47,6 +47,13 @@ usuario.delete()
 realizadas. En caso de utilizar algún archivo, justifica su necesidad y los casos en que se utilizan.
 - [] Un usuario por cada departamento.
 - Departamento Comercial
-	- [] Crear objetivos empresariales
-	- [] Valores de la empresa
-	- [] Eventos
+    - [✅] Crear objetivos empresariales
+    - [] Valores de la empresa
+    - [] Eventos
+
+## Iniciar un proyecto con Django
+1. Descargar el repo
+2. Instalar Django con `pip install django`
+3. Ejecutar el comando `python3 manage.py migrate`
+4. Ejecutar el comando `python3 manage.py makemigrations`
+5. Ejecutar el servidor embebido `python3 manage.py runserver`
