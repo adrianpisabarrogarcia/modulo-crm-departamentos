@@ -12,6 +12,7 @@ from departamentos.controllers.c_partes import c_ver_partes, anadir_partes, elim
 from departamentos.controllers.c_proyectos import anadir_proyecto, leer_proyectos
 from departamentos.controllers.c_gastos import anadir_gasto, leer_gastos, eliminar_gasto
 from departamentos.controllers.c_estadisticas import generar_graficos
+from departamentos.controllers.c_objetivos import leer_objetivos, anadir_objetivo, eliminar_objetivo
 
 
 # app basics
@@ -137,7 +138,8 @@ def ver_gastos(request):
 
 # dept comercial
 def objetivos(request):
-    return render(request, 'comercial/objetivos.html')
+    objetivos = leer_objetivos()
+    return render(request, 'comercial/objetivos.html', {'objetivos': objetivos})
 
 
 def valores(request):

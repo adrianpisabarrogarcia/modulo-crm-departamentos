@@ -49,6 +49,9 @@ class Permiso(models.Model):
 class Objetivo(models.Model):
     nombre = models.CharField(max_length=30)
     departamento = models.ForeignKey(Departamento, on_delete=models.CASCADE)
+    descripcion = models.CharField(max_length=500)
+    fechainicio = models.DateField()
+    fechafin = models.DateField()
 
 class Valores(models.Model):
     nombre = models.CharField(max_length=30)
