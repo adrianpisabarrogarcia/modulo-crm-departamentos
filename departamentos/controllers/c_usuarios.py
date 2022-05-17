@@ -24,6 +24,8 @@ def registrar_usuario(request):
         Permiso(usuario=usuario, escritura=False, departamento=Departamento.objects.get(id=2)).save()
     if "administracion" in request.POST:
         Permiso(usuario=usuario, escritura=False, departamento=Departamento.objects.get(id=3)).save()
+    if "comercial" in request.POST:
+        Permiso(usuario=usuario, escritura=False, departamento=Departamento.objects.get(id=4)).save()
 
 
 def iniciar_sesion(request):
@@ -75,3 +77,8 @@ def registrar_usuario_rrhh(request):
             Permiso(usuario=usuario, escritura=False, departamento=Departamento.objects.get(id=3)).save()
         else:
             Permiso(usuario=usuario, escritura=True, departamento=Departamento.objects.get(id=3)).save()
+    if "comercial" in request.POST:
+        if request.POST['comercial-checkbox'] == "lectura":
+            Permiso(usuario=usuario, escritura=False, departamento=Departamento.objects.get(id=4)).save()
+        else:
+            Permiso(usuario=usuario, escritura=True, departamento=Departamento.objects.get(id=4)).save()

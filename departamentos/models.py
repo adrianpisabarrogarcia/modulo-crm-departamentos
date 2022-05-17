@@ -44,3 +44,19 @@ class Permiso(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     escritura = models.BooleanField()
     departamento = models.ForeignKey(Departamento, on_delete=models.CASCADE)
+
+
+class Objetivo(models.Model):
+    nombre = models.CharField(max_length=30)
+    departamento = models.ForeignKey(Departamento, on_delete=models.CASCADE)
+
+class Valores(models.Model):
+    nombre = models.CharField(max_length=30)
+    observacion = models.CharField(max_length=500)
+
+class Evento(models.Model):
+    nombre = models.CharField(max_length=30)
+    fecha = models.DateField()
+    hora = models.TimeField()
+    lugar = models.CharField(max_length=30)
+    descripcion = models.CharField(max_length=500)
