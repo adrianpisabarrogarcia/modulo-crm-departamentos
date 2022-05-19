@@ -53,10 +53,3 @@ usuario.save()
 usuario = Usuario.objects.get(id=int(id))
 usuario.delete()
 ```
-
-### Tareas que faltan por hacer
-- [] Documento pdf que expliques todo el funcionamiento.
-- [] Describe con detalle la organización de la base de datos, las tablas utilizadas, las consultas
-realizadas. En caso de utilizar algún archivo, justifica su necesidad y los casos en que se utilizan.
-- [] Un usuario por cada departamento.
-
