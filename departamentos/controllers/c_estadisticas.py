@@ -56,7 +56,8 @@ def ranking_sueldos():
         numero = 1
         for nominas in nominas:
             height.append(nominas.cantidad)
-            bars = bars + ("Trabajador " + str(numero),)
+            # bars = bars + ("Trabajador " + str(numero),)
+            bars = bars + ("T " + str(numero),)
             numero = numero + 1
 
 

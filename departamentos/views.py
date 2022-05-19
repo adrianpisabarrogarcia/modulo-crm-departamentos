@@ -135,7 +135,8 @@ def crear_gasto(request):
 
 
 def ver_gastos(request):
-    return render(request, 'administracion/ver-gastos.html')
+    gastos = leer_gastos()
+    return render(request, 'administracion/ver-gastos.html', {'gastos': gastos})
 
 
 # dept comercial
